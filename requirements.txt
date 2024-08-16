@@ -1,0 +1,14 @@
+common
+paddlepaddle
+paddleocr
+opencv-python
+Shapely
+requests
+numpy
+pillow
+gradio
+torch
+torchvision 
+torchaudio
+easyocr
+python-bidi==0.4.2

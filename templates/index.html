@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Image Text Extractor</title>
+  </head>
+  <body>
+    <h1>Image Text Extractor</h1>
+    <form id="upload-form" method="post" enctype="multipart/form-data">
+      <input type="file" name="image" accept="image/*" />
+      <button type="submit">Upload Image</button>
+    </form>
+    <div id="extracted-text"></div>
+
+    <script>
+      const form = document.querySelector("#upload-form");
+      const extractedTextDiv = document.querySelector("#extracted-text");
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const formData = new FormData(form);
+        const response = await fetch("/extract-text", {
+          method: "POST",
+          body: formData,
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          extractedTextDiv.innerText = data.extracted_text;
+        } else {
+          extractedTextDiv.innerText = "Error: Could not extract text.";
+        }
+      });
+    </script>
+  </body>
+</html>
